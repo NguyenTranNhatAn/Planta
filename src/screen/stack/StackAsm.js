@@ -3,21 +3,20 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 const Stack = createNativeStackNavigator();
 import { NavigationContainer } from '@react-navigation/native'
-import LoginAsm from './LoginAsm';
-import RegisterAsm from './RegisterAsm';
+import LoginAsm from '../auth/LoginAsm';
+import RegisterAsm from '../auth/LoginAsm';
 
-import TabAsm from './TabAsm';
+import TabAsm from '../tab/TabAsm';
 import DetailAsm from './DetailAsm';
 import CartAsm from './CartAsm';
 import Regular from './Regular';
-import Search from './Search';
+import Search from '../tab/Search';
 import Payment from './Payment';
 import AdjPersonal from './AdjPersonal';
-import AppAsm from './AppAsm';
-import Profile from './Profile';
+
+import Profile from '../tab/Profile';
 import History from './History';
 import Question from './Question';
-import DangkiTest from './DangkiTest';
 import DetailHistory from './DetailHistory';
 const StackAsm = (props) => {
   return (
@@ -26,8 +25,8 @@ const StackAsm = (props) => {
       <Stack.Navigator
         screenOptions={{ headerShown: false, }}
         initialRouteName='Login'>
-        <Stack.Screen name="App" component={AppAsm} />
-        <Stack.Screen name="Test" component={DangkiTest} />
+
+
         <Stack.Screen name="Register" component={RegisterAsm} />
         <Stack.Screen name="Login" component={LoginAsm} />
         {/* <Stack.Screen name="Screen3" component={Bai1} />

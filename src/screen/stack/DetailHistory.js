@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 
 const DetailHistory = (props) => {
     const { navigation } = props
@@ -39,7 +39,7 @@ const DetailHistory = (props) => {
     return (
         <View style={styles.containter}>
             <HeaderCustom
-                leftIcon={require('../../assets/images/arrow-left.png')}
+                leftIcon={require('../../../assets/images/arrow-left.png')}
                 title={'Lịch sử giao dịch'}
                 navigation={navigation}
 

@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetDetail } from '../Asm/reducer/detailSlice';
-import { GetDetailCategory } from '../Asm/reducer/categorySlice';
-import { GetParent } from '../Asm/reducer/cateParentSlice';
-import { AddCart } from '../Asm/reducer/cartAdd';
+import { GetDetail } from '../../reducer/detailSlice';
+import { GetDetailCategory } from '../../reducer/categorySlice';
+import { GetParent } from '../../reducer/cateParentSlice';
+import { AddCart } from '../../reducer/cartAdd';
 const DetailAsm = (props) => {
   const dispatch = useDispatch();
   const { detailData, detailStatus } = useSelector((state) => state.detail);
@@ -81,10 +81,10 @@ const DetailAsm = (props) => {
     <View style={styles.container}>
 
       <HeaderCustom
-        leftIcon={require('../../assets/images/arrow-left.png')}
+        leftIcon={require('../../../assets/images/arrow-left.png')}
         title={detailData.name}
         navigation={navigation}
-        rightIcon={require('../../assets/images/shopping-cart.png')}
+        rightIcon={require('../../../assets/images/shopping-cart.png')}
 
 
       />
@@ -154,13 +154,13 @@ const DetailAsm = (props) => {
           <View style={styles.rowfoot}>
             <View style={styles.left}>
               <TouchableOpacity onPress={btnMinus} style={[styles.btnMP, { borderColor: '#7D7B7B' }]}>
-                <Image source={require('../../assets/images/minus.png')} />
+                <Image source={require('../../../assets/images/minus.png')} />
               </TouchableOpacity>
               <Text>
                 {qty}
               </Text>
               <TouchableOpacity onPress={btnAdd} style={[styles.btnMP, { borderColor: 'black' }]}>
-                <Image source={require('../../assets/images/plus.png')} />
+                <Image source={require('../../../assets/images/plus.png')} />
               </TouchableOpacity>
             </View>
 

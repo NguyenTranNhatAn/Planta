@@ -5,14 +5,14 @@ import {
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
-import { DangNhapTaiKhoan } from '../Asm/reducer/loginSlice';
+import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
 const LoginAsm = (props) => {
   const { navigation } = props;
   const dispatch = useDispatch();
   const { loginData, loginStatus } = useSelector((state) => state.login);
   const [email, setemail] = useState("");
   const [emailErr, setemailErr] = useState("");
-  const [err, setErr] = useState({email:''})
+  const [err, setErr] = useState({ email: '' })
   const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [ok, setok] = useState(false);
@@ -79,106 +79,106 @@ const LoginAsm = (props) => {
   }
   return (
     <View style={{ flex: 1 }}>
-   
-        <ScrollView>
-          <Image style={styles.anhnen} source={require('../../assets/images/nen.png')} />
 
-          <View style={styles.than}>
-            <Text style={styles.title}>Chào Mừng Bạn</Text>
-            <Text style={styles.annou} >Đăng nhập tài khoản</Text>
+      <ScrollView>
+        <Image style={styles.anhnen} source={require('../../../assets/images/nen.png')} />
 
-            <View style={styles.conText}>
+        <View style={styles.than}>
+          <Text style={styles.title}>Chào Mừng Bạn</Text>
+          <Text style={styles.annou} >Đăng nhập tài khoản</Text>
 
-
-              <View
-
-                style={[
-                  !!emailErr ? styles.textInconErr : styles.textInCon,
-                  !emailErr && focus && { borderColor: 'green' }
-                ]}>
-                <TextInput
-                  onFocus={() => setfocus(true)}
-                  onBlur={() => setfocus(false)}
-                  onChangeText={(data) => changeEmail(data)} style={styles.input}
-                  placeholder='Nhập email hoặc Số điện thoại' />
-              </View>
-
-              {!!emailErr && <Text style={styles.textRed}>{emailErr} </Text>}
-
-              <View
-
-                style={[
-                  !!passwordErr ? styles.textInconErr : styles.textInCon,
-                  !passwordErr && passfocus && { borderColor: 'green' }
-
-                ]}>
-                <TextInput
-                  onFocus={() => setpassfocus(true)}
-                  onBlur={() => setpassfocus(false)}
-                  secureTextEntry={secure}
-                  onChangeText={(data) => changepassword(data)}
-                  style={styles.input} placeholder='Mật khẩu' />
-                <TouchableOpacity onPress={lookPass}>
-                  {secure ? <Image source={require('../../assets/images/eye.png')} />
-                    : <Image source={require('../../assets/images/eyeoff.png')} />}
-                </TouchableOpacity>
-              </View>
-
-              {!!passwordErr && <Text style={styles.textRed}>{passwordErr} </Text>}
+          <View style={styles.conText}>
 
 
+            <View
+
+              style={[
+                !!emailErr ? styles.textInconErr : styles.textInCon,
+                !emailErr && focus && { borderColor: 'green' }
+              ]}>
+              <TextInput
+                onFocus={() => setfocus(true)}
+                onBlur={() => setfocus(false)}
+                onChangeText={(data) => changeEmail(data)} style={styles.input}
+                placeholder='Nhập email hoặc Số điện thoại' />
             </View>
 
-            <View style={styles.bottom}>
-              <View style={styles.remember}>
-                <TouchableOpacity>
-                  <Image source={require('../../assets/images/ri_checkbox-circle-line.png')} />
-                </TouchableOpacity>
-                <Text style={styles.rememtext}>Nhớ tài khoản</Text>
-              </View>
+            {!!emailErr && <Text style={styles.textRed}>{emailErr} </Text>}
 
-              <TouchableOpacity>
-                <Text style={styles.forgot}>Forgot password ? </Text>
+            <View
+
+              style={[
+                !!passwordErr ? styles.textInconErr : styles.textInCon,
+                !passwordErr && passfocus && { borderColor: 'green' }
+
+              ]}>
+              <TextInput
+                onFocus={() => setpassfocus(true)}
+                onBlur={() => setpassfocus(false)}
+                secureTextEntry={secure}
+                onChangeText={(data) => changepassword(data)}
+                style={styles.input} placeholder='Mật khẩu' />
+              <TouchableOpacity onPress={lookPass}>
+                {secure ? <Image source={require('../../../assets/images/eye.png')} />
+                  : <Image source={require('../../../assets/images/eyeoff.png')} />}
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={addData} style={styles.btnSign}>
-              <LinearGradient
-                colors={['#007537', '#4CAF50']} // Màu xanh đậm và xanh nhạt
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.linearGradient}
-              >
-                <Text style={styles.Signin}>Đăng Nhập</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+            {!!passwordErr && <Text style={styles.textRed}>{passwordErr} </Text>}
 
-            <View style={styles.another}>
-              <View style={styles.line}></View>
-              <Text style={styles.textHoac}>Hoặc</Text>
-              <View style={styles.line}></View>
-            </View>
-            <View style={styles.account}>
-              <TouchableOpacity>
-                <Image style={styles.accountImg} source={require('../../assets/images/ggg.png')} />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image style={styles.accountImg} source={require('../../assets/images/facebook.png')} />
-              </TouchableOpacity>
-            </View>
+
           </View>
-          <View style={styles.end}>
-            <Text style={styles.black}>
-              Bạn không có tài khoản
+
+          <View style={styles.bottom}>
+            <View style={styles.remember}>
+              <TouchableOpacity>
+                <Image source={require('../../../assets/images/ri_checkbox-circle-line.png')} />
+              </TouchableOpacity>
+              <Text style={styles.rememtext}>Nhớ tài khoản</Text>
+            </View>
+
+            <TouchableOpacity>
+              <Text style={styles.forgot}>Forgot password ? </Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity onPress={addData} style={styles.btnSign}>
+            <LinearGradient
+              colors={['#007537', '#4CAF50']} // Màu xanh đậm và xanh nhạt
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.linearGradient}
+            >
+              <Text style={styles.Signin}>Đăng Nhập</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <View style={styles.another}>
+            <View style={styles.line}></View>
+            <Text style={styles.textHoac}>Hoặc</Text>
+            <View style={styles.line}></View>
+          </View>
+          <View style={styles.account}>
+            <TouchableOpacity>
+              <Image style={styles.accountImg} source={require('../../../assets/images/ggg.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.accountImg} source={require('../../../assets/images/facebook.png')} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.end}>
+          <Text style={styles.black}>
+            Bạn không có tài khoản
+          </Text>
+          <TouchableOpacity onPress={regis}>
+            <Text style={styles.green}>
+              Tạo tài khoán
             </Text>
-            <TouchableOpacity onPress={regis}>
-              <Text style={styles.green}>
-                Tạo tài khoán
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-    
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+
     </View>
   )
 }

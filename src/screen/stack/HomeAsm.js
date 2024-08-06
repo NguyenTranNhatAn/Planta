@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { LaySanPham } from '../Asm/reducer/ProductSlice'
-import ProductSection from '../Compoment/ProductSection'
+import { LaySanPham } from '../../reducer/ProductSlice'
+import ProductSection from '../../Compoment/ProductSection'
 
 const HomeAsm = (props) => {
     const dispatch = useDispatch();
@@ -44,13 +44,13 @@ const HomeAsm = (props) => {
                         Planta - toả sáng không gian nhà bạn
                     </Text>
                     <TouchableOpacity onPress={toCart} style={styles.btnCart}>
-                        <Image style={styles.imgstyle} source={require('../../assets/images/shopping-cart.png')} />
+                        <Image style={styles.imgstyle} source={require('../../../assets/images/shopping-cart.png')} />
                     </TouchableOpacity>
                 </View>
-                <ImageBackground style={styles.background} source={require('../../assets/images/nenHome.png')}>
+                <ImageBackground style={styles.background} source={require('../../../assets/images/nenHome.png')}>
                     <TouchableOpacity style={styles.btnNewPro}>
                         <Text style={styles.newProduct}>Xem hàng mới về</Text>
-                        <Image source={require('../../assets/images/fi_arrow-right.png')} />
+                        <Image source={require('../../../assets/images/fi_arrow-right.png')} />
                     </TouchableOpacity>
 
                 </ImageBackground>
@@ -72,7 +72,7 @@ const HomeAsm = (props) => {
                                     Gồm: hạt giống Lemon Balm, gói đất hữu cơ, chậu Planta, marker đánh dấu...
                                 </Text>
                             </View>
-                            <Image style={styles.rightCombo} source={require('../../assets/images/rightCombo.png')} />
+                            <Image style={styles.rightCombo} source={require('../../../assets/images/rightCombo.png')} />
                         </TouchableOpacity>
 
 

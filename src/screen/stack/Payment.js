@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, StatusBar, TextInput, ToastAndroid, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
-import { AddBill } from '../Asm/reducer/addBill';
-import { DeleteCartAll } from '../Asm/reducer/removeCart';
-import { FindUser } from '../Asm/reducer/findUser';
+import HeaderCustom from '../../Compoment/HeaderCustom'
+import { AddBill } from '../../reducer/addBill';
+import { DeleteCartAll } from '../../reducer/removeCart';
+import { FindUser } from '../../reducer/findUser';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Payment = (props) => {
@@ -44,7 +44,7 @@ const Payment = (props) => {
 
 
       <HeaderCustom
-        leftIcon={require('../../assets/images/arrow-left.png')}
+        leftIcon={require('../../../assets/images/arrow-left.png')}
         title={'Thanh Toán'}
         navigation={navigation}
 
@@ -99,7 +99,7 @@ const Payment = (props) => {
                   Dự kiên giao hàng 5-7/9
                 </Text>
               </View>
-              <Image source={require('../../assets/images/check.png')} />
+              <Image source={require('../../../assets/images/check.png')} />
             </View>
 
             <View style={styles.underLineSub}>
@@ -126,7 +126,7 @@ const Payment = (props) => {
               <Text style={styles.txtGreen}>
                 THẺ VISA/MASTERCARD
               </Text>
-              <Image source={require('../../assets/images/check.png')} />
+              <Image source={require('../../../assets/images/check.png')} />
 
 
             </View>

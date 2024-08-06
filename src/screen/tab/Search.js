@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, StatusBar, TextInput, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Header } from 'react-native/Libraries/NewAppScreen'
-import HeaderCustom from '../Compoment/HeaderCustom';
+import HeaderCustom from '../../Compoment/HeaderCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetByName } from '../Asm/reducer/searchProduct';
+import { GetByName } from '../../reducer/searchProduct';
 
 const Search = (props) => {
   const { navigation } = props
@@ -40,7 +40,7 @@ const Search = (props) => {
 
 
       <HeaderCustom
-        leftIcon={require('../../assets/images/arrow-left.png')}
+        leftIcon={require('../../../assets/images/arrow-left.png')}
         title={'Tìm kiếm'}
         navigation={navigation}
 
@@ -50,7 +50,7 @@ const Search = (props) => {
         <View style={styles.searchCon}>
           <TextInput onChangeText={(text) => change(text)} style={styles.input} placeholder='Tìm hiểu' />
           <TouchableOpacity>
-            <Image source={require('../../assets/images/search.png')} />
+            <Image source={require('../../../assets/images/search.png')} />
           </TouchableOpacity>
         </View>
 

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import ProductSection from '../Compoment/ProductSection';
-import HeaderCustom from '../Compoment/HeaderCustom';
+import ProductSection from '../../Compoment/ProductSection';
+import HeaderCustom from '../../Compoment/HeaderCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllCategory } from './reducer/categoryGetallSlice';
-import { GetProByTypeCategory } from './reducer/productByType';
+import { GetAllCategory } from '../../reducer/categoryGetallSlice';
+import { GetProByTypeCategory } from '../../reducer/productByType';
 const Regular = (props) => {
     const dispatch = useDispatch();
     const { cateAllData, cateAllStatus } = useSelector((state) => state.cateGetAll);
@@ -39,10 +39,10 @@ const Regular = (props) => {
         <View style={{ backgroundColor: 'white', flex: 1 }}>
 
             <HeaderCustom
-                leftIcon={require('../../assets/images/arrow-left.png')}
+                leftIcon={require('../../../assets/images/arrow-left.png')}
                 title={'CÂY TRỒNG'}
                 navigation={navigation}
-                rightIcon={require('../../assets/images/shopping-cart.png')}
+                rightIcon={require('../../../assets/images/shopping-cart.png')}
 
 
             />

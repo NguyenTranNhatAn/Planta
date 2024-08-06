@@ -1,51 +1,50 @@
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllCategory} from '../Asm/reducer/categoryGetallSlice'
+import { GetAllCategory } from '../reducer/categoryGetallSlice'
 
 const ProductSection = ({ title, data, more, navigation }) => {
-    
+
 
     const detail = (id) => {
         navigation.navigate('Detail', { id: id });
     }
     const seeMore = () => {
         navigation.navigate('More');
-        
+
     }
-  
-   
-    const dispatch =useDispatch();
+
+
+    const dispatch = useDispatch();
     const { cateAllData, cateAllStatus } = useSelector((state) => state.cateGetAll);
     useEffect(() => {
-       dispatch(GetAllCategory()); 
-      
-          }, [dispatch]);
+        dispatch(GetAllCategory());
+
+    }, [dispatch]);
     const itemCount = more ? 4 : data.length;
     const renderitem = (data) => {
-        
-        return data.slice(0, itemCount).map((item, index) =>{
-          
-           var type
+
+        return data.slice(0, itemCount).map((item, index) => {
+
+            var type
             cateAllData.forEach(cateItem => {
-                if(cateItem._id ==item.cat_id)
-                {
-                  type = cateItem.name
+                if (cateItem._id == item.cat_id) {
+                    type = cateItem.name
                 }
-              });
-          
-         
-          return  (
+            });
+
+
+            return (
                 <TouchableOpacity onPress={() => detail(item._id)} style={styles.itemContain} key={index}>
                     <View style={styles.imgContain}>
                         <Image width={155} height={134} source={{ uri: item.image }} />
-    
+
                     </View>
                     <View style={styles.itemBody}>
                         <Text style={styles.nameItem}>{item.name}</Text>
                         {!!type && <Text style={styles.typeItem}>{type}</Text>}
-                    
+
                         <Text style={styles.priceItem}>{item.price}đ</Text>
                     </View>
                 </TouchableOpacity>
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
     itemContain: {
         width: '48%',
         marginBottom: 15,
-       
+
 
 
 

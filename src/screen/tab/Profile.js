@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 
 
 const Profile = (props) => {
@@ -26,7 +26,7 @@ const Profile = (props) => {
 
             />
             <View style={styles.headerPro}>
-                <Image style={styles.avataimg} source={require('../../assets/images/Avatar.png')} />
+                <Image style={styles.avataimg} source={require('../../../assets/images/Avatar.png')} />
                 <View style={styles.right}>
                     <Text style={styles.name}>
                         Nguyễn Trần Nhật An
