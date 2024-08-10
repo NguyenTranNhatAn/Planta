@@ -82,28 +82,7 @@ const History = (props) => {
                     showsVerticalScrollIndicator={false}
                     keyExtractor={item => item._id}
                 />
-                {/* <View style={styles.item}>
-                    <View style={styles.underLineSub}>
-                        <Text style={styles.txtDeMain}>
-                            Thứ hai, 01/09/2021
-                        </Text>
-                    </View>
-                    <TouchableOpacity style={styles.itemContain} >
-                        <View style={styles.imgContain}>
-                            <Image style={styles.img} source={require('./../../../assets/images/spider-plant.png')} />
-                        </View>
-                        <View style={styles.itemBody}>
-                            <Text style={styles.red}>Đặt hủy đơn hàng </Text>
-                            <Text style={styles.nameItem}>Panse Đen | <Text style={styles.txtGray}>Hybrid</Text></Text>
-
-
-                            <Text style={styles.nameItem}>2 sản phẩm</Text>
-                        </View>
-                    </TouchableOpacity>
-
-
-
-                </View> */}
+               
             </View>
         </View>
     )

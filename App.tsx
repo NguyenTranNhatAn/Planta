@@ -4,7 +4,7 @@ import { StyleSheet, SafeAreaView, StatusBar, Text, View, ScrollView } from 'rea
 import LoginAsm from './src/screen/auth/LoginAsm';
 import RegisterAsm from './src/screen/auth/RegisterAsm';
 import StackAsm from './src/screen/stack/StackAsm';
-import HomeAsm from './src/screen/stack/HomeAsm';
+import HomeAsm from './src/screen/tab/HomeAsm';
 import DetailAsm from './src/screen/stack/DetailAsm';
 
 import { Provider } from 'react-redux';

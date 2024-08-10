@@ -45,15 +45,21 @@ const RegisterAsm = (props) => {
   const login = () => {
     navigation.navigate('Login');
   }
-
-  const addData = () => {
+  const validate = () => {
     var check = true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex1= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
+    const passwordRegex2 = /^[\w@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]*$/;
     if (name == "") {
       setnameErr('Họ tên không được để trống');
       check = false;
     }
-    if (email == "") {
+    if (email=='') {
       setemailErr('Email không được để trống')
+      check = false;
+    }
+    else if(!emailRegex.test(email)){
+      setemailErr('Email không đúng định dạng')
       check = false;
     }
 
@@ -61,14 +67,41 @@ const RegisterAsm = (props) => {
       setsdtErr('Số điện thoại không được để trống')
       check = false
     }
+    else if(phone.length !==10){
+      setsdtErr('Số điện thoại phải đủ 10 số')
+      check = false;
+    }
+    
 
     if (password == "") {
       setPasswordErr('Mật khẩu không được để trống')
       check = false
     }
-    if (check == true) {
+    else if (!passwordRegex1.test(password)) {
+      setPasswordErr('Mật khẩu phải có chữ hoa chữ thường và có kí tự in hoa')
+      check = false
+    }
+    else if (!passwordRegex2.test(password)) {
+      setPasswordErr('Mật khẩu không được chứa kí tự đặc biệt')
+      check = false
+    }
+    else if (password.length<8) {
+      setPasswordErr('Mật khẩu phải có ít nhất 8 kí tự')
+      check = false
+    }
+
+
+   return check
+  }
+  const addData = () => {
+  
+    if (validate() === true) {
       dispatch(DangKyTaiKhoan({ name, email, phone, password }));
       setok(true)
+      setEmail('')
+      setPassword('')
+      setPhone('')
+      setname('')
     }
 
   }
@@ -90,13 +123,14 @@ const RegisterAsm = (props) => {
               setTextErr={setnameErr}
             />
             <TextInputCom
-              placeholder={'E-mail'}
+              placeholder={'E-mail'} 
               setText={setEmail}
               textErr={emailErr}
               setTextErr={setemailErr}
             />
             <TextInputCom
               placeholder={'Số điện thoại'}
+              keyboardtype={'numeric'}
               setText={setPhone}
               textErr={sdtErr}
               setTextErr={setsdtErr}

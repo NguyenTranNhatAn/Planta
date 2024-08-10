@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 const Stack = createNativeStackNavigator();
 import { NavigationContainer } from '@react-navigation/native'
 import LoginAsm from '../auth/LoginAsm';
-import RegisterAsm from '../auth/LoginAsm';
+import RegisterAsm from '../auth/RegisterAsm';
 
 import TabAsm from '../tab/TabAsm';
 import DetailAsm from './DetailAsm';
@@ -13,7 +13,6 @@ import Regular from './Regular';
 import Search from '../tab/Search';
 import Payment from './Payment';
 import AdjPersonal from './AdjPersonal';
-
 import Profile from '../tab/Profile';
 import History from './History';
 import Question from './Question';
@@ -24,13 +23,9 @@ const StackAsm = (props) => {
     >
       <Stack.Navigator
         screenOptions={{ headerShown: false, }}
-        initialRouteName='Login'>
-
-
+        initialRouteName='Tab'>
         <Stack.Screen name="Register" component={RegisterAsm} />
         <Stack.Screen name="Login" component={LoginAsm} />
-        {/* <Stack.Screen name="Screen3" component={Bai1} />
-        <Stack.Screen name="Screen4" component={Bai2} /> */}
         <Stack.Screen name="Tab" component={TabAsm} />
         <Stack.Screen name="Cart" component={CartAsm} />
         <Stack.Screen name="More" component={Regular} />

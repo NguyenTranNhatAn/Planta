@@ -18,7 +18,7 @@ const DetailAsm = (props) => {
   const [buy, setbuy] = useState(false)
   const { navigation } = props;
   const id = props.route?.params?.id;
-  const userId = loginData.user._id;
+ 
   const btnMinus = () => {
     const value = qty - 1;
     const priceValue = value * detailData.price;

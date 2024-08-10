@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React, { useState } from 'react'
 
 const TextInputCom = ({
-     setText,textErr, placeholder, setTextErr,
+     setText,textErr, placeholder, setTextErr, keyboardtype
 }) => {
     const [focus, setFocus] = useState(false)
     const changeErrText = (data) => {
@@ -20,6 +20,7 @@ const TextInputCom = ({
                     !textErr && focus && { borderColor: 'green' }
                 ]}>
                 <TextInput
+                    keyboardType={!!keyboardtype? keyboardtype:'default'}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
                     onChangeText={(data) => changeErrText(data)} style={styles.input}

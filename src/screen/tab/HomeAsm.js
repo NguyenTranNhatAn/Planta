@@ -2,18 +2,26 @@ import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, TouchableOpa
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { LaySanPham } from '../../reducer/ProductSlice'
+import { GetAllCategory } from '../../reducer/categoryGetallSlice'
+import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
 import ProductSection from '../../Compoment/ProductSection'
+
 
 const HomeAsm = (props) => {
     const dispatch = useDispatch();
     const { productData, productStatus } = useSelector((state) => state.product);
+    const { cateAllData, cateAllStatus } = useSelector((state) => state.cateGetAll);
     const { navigation } = props;
     const [load, setload] = useState(false);
+  
 
     useEffect(() => {
 
 
         dispatch(LaySanPham());
+        dispatch(GetAllCategory());
+        dispatch(DangNhapTaiKhoan({ email:'an', password:'123' }))
+
 
     }, [dispatch])
 
@@ -31,6 +39,31 @@ const HomeAsm = (props) => {
     }, [productStatus])
     const toCart = () => {
         navigation.navigate('Cart');
+    }
+    const listProduct = () =>{
+        var prouducts = [];
+        var data= []
+       for (const category of cateAllData){
+        prouducts=[]
+            for(const product of productData)
+            {
+               if( product.cat_id === category._id){
+                    prouducts.push(product)
+               }
+              
+            }
+            data.push(
+                {
+                    name: category.name,
+                    products:prouducts
+                }
+            )
+       }
+       return data.map((item,index) =>(
+        <ProductSection key={index} title={item.name} data={item.products} more={'true'} navigation={navigation} />
+
+       ))
+      
     }
 
     return (
@@ -58,8 +91,7 @@ const HomeAsm = (props) => {
                     {load ?
                         <Text>Loading...</Text>
                         :
-                        <ProductSection title={'Cây trồng'} data={productData} more={'true'} navigation={navigation} />
-
+                            listProduct()
                     }
 
                     <View >
@@ -173,6 +205,7 @@ const styles = StyleSheet.create({
 
     },
     header: {
+        paddingTop: 40,
         paddingHorizontal: 25,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -180,7 +213,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F6F6F6'
     },
     container: {
-        paddingTop: 40,
+      
         backgroundColor: '#F6F6F6',
 
     },

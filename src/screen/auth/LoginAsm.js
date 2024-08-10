@@ -61,15 +61,34 @@ const LoginAsm = (props) => {
     setSecure(!secure)
   }
   const addData = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex1= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
+    const passwordRegex2 = /^[\w@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]*$/;
     var check = true
     if (email == "") {
       setemailErr('Email không được để trống');
       check = false;
     }
+    // else if(!emailRegex.test(email)){
+    //   setemailErr('Email không đúng định dạng')
+    //   check = false;
+    // }
     if (password == "") {
-      setPasswordErr('Password không được để trống')
-      check = false;
+      setPasswordErr('Mật khẩu không được để trống')
+      check = false
     }
+    // else if (!passwordRegex1.test(password)) {
+    //   setPasswordErr('Mật khẩu phải có chữ hoa chữ thường và có kí tự in hoa')
+    //   check = false
+    // }
+    // else if (!passwordRegex2.test(password)) {
+    //   setPasswordErr('Mật khẩu không được chứa kí tự đặc biệt')
+    //   check = false
+    // }
+    // else if (password.length<8) {
+    //   setPasswordErr('Mật khẩu phải có ít nhất 8 kí tự')
+    //   check = false
+    // }
 
     if (check === true) {
       dispatch(DangNhapTaiKhoan({ email, password }))
@@ -100,7 +119,7 @@ const LoginAsm = (props) => {
                 onFocus={() => setfocus(true)}
                 onBlur={() => setfocus(false)}
                 onChangeText={(data) => changeEmail(data)} style={styles.input}
-                placeholder='Nhập email hoặc Số điện thoại' />
+                placeholder='Nhập email ' />
             </View>
 
             {!!emailErr && <Text style={styles.textRed}>{emailErr} </Text>}
