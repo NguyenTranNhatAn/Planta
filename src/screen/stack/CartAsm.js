@@ -45,7 +45,8 @@ const CartAsm = (props) => {
 
     useEffect(() => {
         dispatch(GetCart(loginData.user._id))
-    }, [dispatch, minuscartStatus, addcartStatus, deleteCartStatus, total, deleteAllStatus]);
+        console.log(addcartData)
+    }, [dispatch, minuscartData, addcartData, deleteCartData]);
 
     useEffect(() => {
 

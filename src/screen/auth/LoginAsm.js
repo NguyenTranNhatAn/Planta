@@ -10,10 +10,10 @@ const LoginAsm = (props) => {
   const { navigation } = props;
   const dispatch = useDispatch();
   const { loginData, loginStatus } = useSelector((state) => state.login);
-  const [email, setemail] = useState("");
+  const [email, setemail] = useState("an");
   const [emailErr, setemailErr] = useState("");
   const [err, setErr] = useState({ email: '' })
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("123");
   const [passwordErr, setPasswordErr] = useState("");
   const [ok, setok] = useState(false);
   const [focus, setfocus] = useState(false);

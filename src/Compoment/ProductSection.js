@@ -2,22 +2,24 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllCategory } from '../reducer/categoryGetallSlice'
+import { GetAllCategory } from '../reducer/categoryGetallSlice';
 
-const ProductSection = ({ title, data, more, navigation }) => {
 
+
+const ProductSection = ({ idCate,title, data, more, navigation }) => {
 
     const detail = (id) => {
         navigation.navigate('Detail', { id: id });
     }
     const seeMore = () => {
-        navigation.navigate('More');
+        navigation.navigate('More',{idCate:idCate});
 
     }
 
 
     const dispatch = useDispatch();
     const { cateAllData, cateAllStatus } = useSelector((state) => state.cateGetAll);
+    const { categoryData, categoryStatus } = useSelector((state) => state.category);
     useEffect(() => {
         dispatch(GetAllCategory());
 

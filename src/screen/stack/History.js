@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ScrollView} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -80,6 +80,7 @@ const History = (props) => {
                     data={listBillData}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
+                    
                     keyExtractor={item => item._id}
                 />
                
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
     },
     body: {
         marginHorizontal: 48,
+        flex:1
     },
     txtDeMain: {
         color: 'black',

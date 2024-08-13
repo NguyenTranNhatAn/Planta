@@ -13,14 +13,15 @@ const HomeAsm = (props) => {
     const { cateAllData, cateAllStatus } = useSelector((state) => state.cateGetAll);
     const { navigation } = props;
     const [load, setload] = useState(false);
-  
+
 
     useEffect(() => {
 
 
         dispatch(LaySanPham());
         dispatch(GetAllCategory());
-        dispatch(DangNhapTaiKhoan({ email:'an', password:'123' }))
+
+
 
 
     }, [dispatch])
@@ -40,37 +41,37 @@ const HomeAsm = (props) => {
     const toCart = () => {
         navigation.navigate('Cart');
     }
-    const listProduct = () =>{
+    const listProduct = () => {
         var prouducts = [];
-        var data= []
-       for (const category of cateAllData){
-        prouducts=[]
-            for(const product of productData)
-            {
-               if( product.cat_id === category._id){
+        var data = []
+        for (const category of cateAllData) {
+            prouducts = []
+            for (const product of productData) {
+                if (product.cat_id === category._id) {
                     prouducts.push(product)
-               }
-              
+                }
+
             }
             data.push(
                 {
+                    id: category._id,
                     name: category.name,
-                    products:prouducts
+                    products: prouducts
                 }
             )
-       }
-       return data.map((item,index) =>(
-        <ProductSection key={index} title={item.name} data={item.products} more={'true'} navigation={navigation} />
+        }
+        return data.map((item, index) => (
+            <ProductSection idCate={item.id} key={index} title={item.name} data={item.products} more={'true'} navigation={navigation} />
 
-       ))
-      
+        ))
+
     }
 
     return (
         <View style={styles.container}>
 
             <ScrollView
-
+                showsVerticalScrollIndicator={false}
             >
                 <View style={styles.header}>
                     <Text style={styles.title}>
@@ -91,7 +92,7 @@ const HomeAsm = (props) => {
                     {load ?
                         <Text>Loading...</Text>
                         :
-                            listProduct()
+                        listProduct()
                     }
 
                     <View >
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F6F6F6'
     },
     container: {
-      
+
         backgroundColor: '#F6F6F6',
 
     },

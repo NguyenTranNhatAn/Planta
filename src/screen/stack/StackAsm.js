@@ -23,7 +23,7 @@ const StackAsm = (props) => {
     >
       <Stack.Navigator
         screenOptions={{ headerShown: false, }}
-        initialRouteName='Tab'>
+        initialRouteName='Login'>
         <Stack.Screen name="Register" component={RegisterAsm} />
         <Stack.Screen name="Login" component={LoginAsm} />
         <Stack.Screen name="Tab" component={TabAsm} />
