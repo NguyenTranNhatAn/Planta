@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { UpdateUser } from '../Asm/reducer/updateUserSlice';
-import { DangNhapTaiKhoan } from '../Asm/reducer/loginSlice';
-import { FindUser } from '../Asm/reducer/findUser';
+import { UpdateUser } from '../../reducer/updateUserSlice';
+import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
+import { FindUser } from '../../reducer/findUser';
 const AdjPersonal = (props) => {
     const dispatch = useDispatch();
     const { loginData } = useSelector((state) => state.login)
@@ -44,12 +44,12 @@ const AdjPersonal = (props) => {
     return (
         <View style={styles.container}>
             <HeaderCustom
-                leftIcon={require('../../assets/images/arrow-left.png')}
+                leftIcon={require('../../../assets/images/arrow-left.png')}
                 title={'CHỈNH SỬA THÔNG TIN'}
                 navigation={navigation}
 
             />
-            <Image style={styles.avata} source={require('../../assets/images/Avatar.png')} />
+            <Image style={styles.avata} source={require('../../../assets/images/Avatar.png')} />
             <View style={styles.body}>
                 <Text style={styles.noti}>
                     Thông tin sẽ được lưu cho lần mua kế tiếp.

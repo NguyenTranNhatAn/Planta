@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, StatusBar, Text, View, ScrollView } from 'react-native';
 
-import LoginAsm from './DaNenTangHai/Asm/LoginAsm';
-import RegisterAsm from './DaNenTangHai/Asm/RegisterAsm';
-import StackAsm from './DaNenTangHai/Asm/StackAsm';
-import HomeAsm from './DaNenTangHai/Asm/HomeAsm';
-import DetailAsm from './DaNenTangHai/Asm/DetailAsm';
+import LoginAsm from './src/screen/auth/LoginAsm';
+import RegisterAsm from './src/screen/auth/RegisterAsm';
+import StackAsm from './src/screen/stack/StackAsm';
+import HomeAsm from './src/screen/tab/HomeAsm';
+import DetailAsm from './src/screen/stack/DetailAsm';
 
 import { Provider } from 'react-redux';
-import { store } from './DaNenTangHai/Asm/store/store';
+import { store } from './src/store/store';
 function App(): React.JSX.Element {
 
   return (

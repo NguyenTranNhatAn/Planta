@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetDetail } from '../Asm/reducer/detailSlice';
-import { GetDetailCategory } from '../Asm/reducer/categorySlice';
-import { GetParent } from '../Asm/reducer/cateParentSlice';
-import { AddCart } from '../Asm/reducer/cartAdd';
+import { GetDetail } from '../../reducer/detailSlice';
+import { GetDetailCategory } from '../../reducer/categorySlice';
+import { GetParent } from '../../reducer/cateParentSlice';
+import { AddCart } from '../../reducer/cartAdd';
+import { GetCart } from '../../reducer/cartSlice';
 const DetailAsm = (props) => {
   const dispatch = useDispatch();
   const { detailData, detailStatus } = useSelector((state) => state.detail);
@@ -13,12 +14,13 @@ const DetailAsm = (props) => {
   const { parentData, parentStatus } = useSelector((state) => state.parent);
   const { addcartData, addcartStatus } = useSelector((state) => state.addCart);
   const { loginData, loginStatus } = useSelector((state) => state.login);
+  const { cartData, cartStatus } = useSelector((state) => state.cart);
   const [qty, setqty] = useState(0);
   const [price, setprice] = useState(0);
-  const [buy, setbuy] = useState(false)
+  const [buy, setbuy] = useState(false);
   const { navigation } = props;
   const id = props.route?.params?.id;
-  const userId = loginData.user._id;
+
   const btnMinus = () => {
     const value = qty - 1;
     const priceValue = value * detailData.price;
@@ -45,18 +47,10 @@ const DetailAsm = (props) => {
   }
   const AddtoCart = () => {
     dispatch(AddCart({ userId: loginData.user._id, qty: qty, id: id }))
-
     navigation.navigate('Cart')
 
 
   }
-  useEffect(() => {
-
-    dispatch(GetDetail(id));
-
-
-  }, [dispatch, id, addcartStatus]);
-
   useEffect(() => {
 
     if (detailData && detailData.cat_id) {
@@ -64,8 +58,6 @@ const DetailAsm = (props) => {
     }
 
   }, [dispatch, detailData]);
-
-
   useEffect(() => {
 
     if (categoryData && categoryData.parentId) {
@@ -76,15 +68,36 @@ const DetailAsm = (props) => {
 
   }, [dispatch, categoryData]);
 
+  useEffect(() => {
 
+    dispatch(GetDetail(id));
+    dispatch(GetCart(loginData.user._id));
+
+
+  }, [dispatch]);
+  useEffect(() => {
+    if (cartStatus === 'succeeded' && detailStatus === 'succeeded') {
+      const productInCart = cartData.find(product => product.productId === detailData._id);
+      if (productInCart) {
+        setqty(productInCart.qty);
+        setprice(productInCart.price * productInCart.qty);
+        setbuy(true);
+      } else {
+        setqty(0);
+        setprice(0);
+        setbuy(false);
+      }
+    }
+  }, [cartData, detailData, cartStatus, detailStatus]);
+  
   return (
     <View style={styles.container}>
 
       <HeaderCustom
-        leftIcon={require('../../assets/images/arrow-left.png')}
+        leftIcon={require('../../../assets/images/arrow-left.png')}
         title={detailData.name}
         navigation={navigation}
-        rightIcon={require('../../assets/images/shopping-cart.png')}
+        rightIcon={require('../../../assets/images/shopping-cart.png')}
 
 
       />
@@ -154,13 +167,13 @@ const DetailAsm = (props) => {
           <View style={styles.rowfoot}>
             <View style={styles.left}>
               <TouchableOpacity onPress={btnMinus} style={[styles.btnMP, { borderColor: '#7D7B7B' }]}>
-                <Image source={require('../../assets/images/minus.png')} />
+                <Image source={require('../../../assets/images/minus.png')} />
               </TouchableOpacity>
               <Text>
                 {qty}
               </Text>
               <TouchableOpacity onPress={btnAdd} style={[styles.btnMP, { borderColor: 'black' }]}>
-                <Image source={require('../../assets/images/plus.png')} />
+                <Image source={require('../../../assets/images/plus.png')} />
               </TouchableOpacity>
             </View>
 

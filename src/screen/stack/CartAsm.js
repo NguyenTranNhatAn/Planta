@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, StatusBar, FlatList, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetCart } from './reducer/cartSlice';
-import { MinusCart } from './reducer/minusCart';
-import { AddCart } from '../Asm/reducer/cartAdd';
-import { DeleteCart } from '../Asm/reducer/deleteCart';
-import { AddBill } from '../Asm/reducer/addBill';
-import { DeleteCartAll } from '../Asm/reducer/removeCart';
+import { GetCart } from '../../reducer/cartSlice';
+import { MinusCart } from '../../reducer/minusCart';
+import { AddCart } from '../../reducer/cartAdd';
+import { DeleteCart } from '../../reducer/deleteCart';
+import { AddBill } from '../../reducer/addBill';
+import { DeleteCartAll } from '../../reducer/removeCart';
 const CartAsm = (props) => {
     const dispatch = useDispatch();
     const { addcartData, addcartStatus } = useSelector((state) => state.addCart);
@@ -45,7 +45,8 @@ const CartAsm = (props) => {
 
     useEffect(() => {
         dispatch(GetCart(loginData.user._id))
-    }, [dispatch, minuscartStatus, addcartStatus, deleteCartStatus, total, deleteAllStatus]);
+        console.log(addcartData)
+    }, [dispatch, minuscartData, addcartData, deleteCartData]);
 
     useEffect(() => {
 
@@ -57,7 +58,7 @@ const CartAsm = (props) => {
         return (
             <View style={styles.cartItem}>
                 <TouchableOpacity style={styles.chkBox} >
-                    <Image source={require('../../assets/images/boxNonCheck.png')} />
+                    <Image source={require('../../../assets/images/boxNonCheck.png')} />
                 </TouchableOpacity>
                 <View style={styles.imgCon}>
                     <Image style={styles.img} source={{ uri: item.image }} />
@@ -77,13 +78,13 @@ const CartAsm = (props) => {
                     <View style={styles.bottom}>
                         <View style={styles.minMax}>
                             <TouchableOpacity onPress={() => btnMinus(item._id, item.productId, loginData.user._id)} style={[styles.btnMP, { borderColor: '#7D7B7B', marginRight: 18.5 }]}>
-                                <Image source={require('../../assets/images/minus.png')} />
+                                <Image source={require('../../../assets/images/minus.png')} />
                             </TouchableOpacity>
                             <Text>
                                 {item.qty}
                             </Text>
                             <TouchableOpacity onPress={() => btnAdd(item.productId)} style={[styles.btnMP, { borderColor: 'black', marginLeft: 18.5 }]}>
-                                <Image source={require('../../assets/images/plus.png')} />
+                                <Image source={require('../../../assets/images/plus.png')} />
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity onPress={() => { deleteCartItem(item._id) }} style={styles.conDelete}>
@@ -100,10 +101,10 @@ const CartAsm = (props) => {
         <View style={{ flex: 1, backgroundColor: 'white' }}>
 
             <HeaderCustom
-                leftIcon={require('../../assets/images/arrow-left.png')}
+                leftIcon={require('../../../assets/images/arrow-left.png')}
                 title={'GIỎ HÀNG'}
                 navigation={navigation}
-                rightIcon={require('../../assets/images/trash.png')}
+                rightIcon={require('../../../assets/images/trash.png')}
 
 
             />
@@ -124,7 +125,7 @@ const CartAsm = (props) => {
                 </View>
                 <TouchableOpacity disabled={!total > 0} onPress={pay} style={total > 0 ? styles.btnPay : styles.cant}>
                     <Text style={styles.textPay}>Tiến hành thanh toán</Text>
-                    <Image source={require('../../assets/images/chevron-right.png')} />
+                    <Image source={require('../../../assets/images/chevron-right.png')} />
                 </TouchableOpacity>
             </View>
         </View>

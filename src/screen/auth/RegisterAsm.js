@@ -6,19 +6,19 @@ import {
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
-import { DangKyTaiKhoan } from '../Asm/reducer/registerSlice';
-import TextInputCom from '../Compoment/TextInputCom';
+import { DangKyTaiKhoan } from '../../reducer/registerSlice';
+import TextInputCom from '../../Compoment/TextInputCom';
 const RegisterAsm = (props) => {
   const { navigation } = props;
   const dispatch = useDispatch();
   const { registerData, registerStatus } = useSelector((state) => state.register);
   const [name, setname] = useState("");
-  const [nameErr, setnameErr] = useState("");
   const [email, setEmail] = useState("");
-  const [emailErr, setemailErr] = useState("");
   const [phone, setPhone] = useState("");
-  const [sdtErr, setsdtErr] = useState("");
   const [password, setPassword] = useState("");
+  const [emailErr, setemailErr] = useState("");
+  const [nameErr, setnameErr] = useState("");
+  const [sdtErr, setsdtErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const [ok, setok] = useState(false);
   useEffect(() => {
@@ -45,15 +45,21 @@ const RegisterAsm = (props) => {
   const login = () => {
     navigation.navigate('Login');
   }
-
-  const addData = () => {
+  const validate = () => {
     var check = true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex1= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
+    const passwordRegex2 = /^[\w@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]*$/;
     if (name == "") {
       setnameErr('Họ tên không được để trống');
       check = false;
     }
-    if (email == "") {
+    if (email=='') {
       setemailErr('Email không được để trống')
+      check = false;
+    }
+    else if(!emailRegex.test(email)){
+      setemailErr('Email không đúng định dạng')
       check = false;
     }
 
@@ -61,98 +67,126 @@ const RegisterAsm = (props) => {
       setsdtErr('Số điện thoại không được để trống')
       check = false
     }
+    else if(phone.length !==10){
+      setsdtErr('Số điện thoại phải đủ 10 số')
+      check = false;
+    }
+    
 
     if (password == "") {
       setPasswordErr('Mật khẩu không được để trống')
       check = false
     }
-    if (check == true) {
+    else if (!passwordRegex1.test(password)) {
+      setPasswordErr('Mật khẩu phải có chữ hoa chữ thường và có kí tự in hoa')
+      check = false
+    }
+    else if (!passwordRegex2.test(password)) {
+      setPasswordErr('Mật khẩu không được chứa kí tự đặc biệt')
+      check = false
+    }
+    else if (password.length<8) {
+      setPasswordErr('Mật khẩu phải có ít nhất 8 kí tự')
+      check = false
+    }
+
+
+   return check
+  }
+  const addData = () => {
+  
+    if (validate() === true) {
       dispatch(DangKyTaiKhoan({ name, email, phone, password }));
       setok(true)
+      setEmail('')
+      setPassword('')
+      setPhone('')
+      setname('')
     }
 
   }
   return (
     <KeyboardAvoidingView behavior='position' style={{ flex: 1 }}>
-     <ScrollView   >
-          <Image style={styles.anhnen} source={require('../../assets/images/nenregis.png')} />
-          <View style={styles.than}>
-            <Text style={styles.title}>Đăng kí</Text>
-            <Text style={styles.annou} >Tạo Tài khoản</Text>
+      <ScrollView   >
+        <Image style={styles.anhnen} source={require('../../../assets/images/nenregis.png')} />
+        <View style={styles.than}>
+          <Text style={styles.title}>Đăng kí</Text>
+          <Text style={styles.annou} >Tạo Tài khoản</Text>
 
-            
-            <View style={styles.conText}>
-              
-              <TextInputCom
-                placeholder={'Họ tên'}
-                setText={setname}
-                textErr={nameErr}
-                setTextErr={setnameErr}
-              />
-              <TextInputCom
-                placeholder={'E-mail'}
-                setText={setEmail}
-                textErr={emailErr}
-                setTextErr={setemailErr}
-              />
-              <TextInputCom
-                placeholder={'Số điện thoại'}
-                setText={setPhone}
-                textErr={sdtErr}
-                setTextErr={setsdtErr}
-              />
-              <TextInputCom
-                placeholder={'Mật Khẩu'}
-                setText={setPassword}
-                textErr={passwordErr}
-                setTextErr={setPasswordErr}
-              />
 
-            </View>
-          
+          <View style={styles.conText}>
 
-            <View style={styles.bottom}>
-              <Text style={styles.luuy}>
-                Để đăng ký tài khoản, bạn đồng ý <Text style={styles.luuyGreen}>Terms & Conditions</Text> and <Text style={styles.luuyGreen}>Privacy Policy</Text>
-              </Text>
-            </View>
+            <TextInputCom
+              placeholder={'Họ tên'}
+              setText={setname}
+              textErr={nameErr}
+              setTextErr={setnameErr}
+            />
+            <TextInputCom
+              placeholder={'E-mail'} 
+              setText={setEmail}
+              textErr={emailErr}
+              setTextErr={setemailErr}
+            />
+            <TextInputCom
+              placeholder={'Số điện thoại'}
+              keyboardtype={'numeric'}
+              setText={setPhone}
+              textErr={sdtErr}
+              setTextErr={setsdtErr}
+            />
+            <TextInputCom
+              placeholder={'Mật Khẩu'}
+              setText={setPassword}
+              textErr={passwordErr}
+              setTextErr={setPasswordErr}
+            />
 
-            <TouchableOpacity onPress={addData} style={styles.btnSign}>
-              <LinearGradient
-                colors={['#007537', '#4CAF50']} // Màu xanh đậm và xanh nhạt
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.linearGradient}
-              >
-                <Text style={styles.Signin}>Đăng Kí</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-
-            <View style={styles.another}>
-              <View style={styles.line}></View>
-              <Text style={styles.textHoac}>Hoặc</Text>
-              <View style={styles.line}></View>
-            </View>
-            <View style={styles.account}>
-              <TouchableOpacity>
-                <Image style={styles.accountImg} source={require('../../assets/images/ggg.png')} />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image style={styles.accountImg} source={require('../../assets/images/facebook.png')} />
-              </TouchableOpacity>
-            </View>
           </View>
-          <View style={styles.end}>
-            <Text style={styles.black}>
-              Bạn đã có tài khoản
+
+
+          <View style={styles.bottom}>
+            <Text style={styles.luuy}>
+              Để đăng ký tài khoản, bạn đồng ý <Text style={styles.luuyGreen}>Terms & Conditions</Text> and <Text style={styles.luuyGreen}>Privacy Policy</Text>
             </Text>
-            <TouchableOpacity onPress={login}>
-              <Text style={styles.green}>
-                Đăng nhập
-              </Text>
+          </View>
+
+          <TouchableOpacity onPress={addData} style={styles.btnSign}>
+            <LinearGradient
+              colors={['#007537', '#4CAF50']} // Màu xanh đậm và xanh nhạt
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.linearGradient}
+            >
+              <Text style={styles.Signin}>Đăng Kí</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          <View style={styles.another}>
+            <View style={styles.line}></View>
+            <Text style={styles.textHoac}>Hoặc</Text>
+            <View style={styles.line}></View>
+          </View>
+          <View style={styles.account}>
+            <TouchableOpacity>
+              <Image style={styles.accountImg} source={require('../../../assets/images/ggg.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.accountImg} source={require('../../../assets/images/facebook.png')} />
             </TouchableOpacity>
           </View>
-        </ScrollView>
+        </View>
+        <View style={styles.end}>
+          <Text style={styles.black}>
+            Bạn đã có tài khoản
+          </Text>
+          <TouchableOpacity onPress={login}>
+            <Text style={styles.green}>
+              Đăng nhập
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   )
 }

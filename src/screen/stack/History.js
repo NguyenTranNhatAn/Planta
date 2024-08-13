@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ScrollView} from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../Compoment/HeaderCustom'
+import HeaderCustom from '../../Compoment/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { ListBill } from '../Asm/reducer/billListSlice';
+import { ListBill } from '../../reducer/billListSlice';
 const History = (props) => {
     const dispatch = useDispatch();
     const { listBillData, listBillStatus } = useSelector((state) => state.listBill);
@@ -68,7 +68,7 @@ const History = (props) => {
     return (
         <View style={styles.con}>
             <HeaderCustom
-                leftIcon={require('../../assets/images/arrow-left.png')}
+                leftIcon={require('../../../assets/images/arrow-left.png')}
                 title={'Lịch sử giao dịch'}
                 navigation={navigation}
 
@@ -80,30 +80,10 @@ const History = (props) => {
                     data={listBillData}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
+                    
                     keyExtractor={item => item._id}
                 />
-                {/* <View style={styles.item}>
-                    <View style={styles.underLineSub}>
-                        <Text style={styles.txtDeMain}>
-                            Thứ hai, 01/09/2021
-                        </Text>
-                    </View>
-                    <TouchableOpacity style={styles.itemContain} >
-                        <View style={styles.imgContain}>
-                            <Image style={styles.img} source={require('./../../assets/images/spider-plant.png')} />
-                        </View>
-                        <View style={styles.itemBody}>
-                            <Text style={styles.red}>Đặt hủy đơn hàng </Text>
-                            <Text style={styles.nameItem}>Panse Đen | <Text style={styles.txtGray}>Hybrid</Text></Text>
-
-
-                            <Text style={styles.nameItem}>2 sản phẩm</Text>
-                        </View>
-                    </TouchableOpacity>
-
-
-
-                </View> */}
+               
             </View>
         </View>
     )
@@ -156,6 +136,7 @@ const styles = StyleSheet.create({
     },
     body: {
         marginHorizontal: 48,
+        flex:1
     },
     txtDeMain: {
         color: 'black',
