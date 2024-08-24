@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, StatusBar, TextInput, ToastAndroid, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
-import { AddBill } from '../../reducer/addBill';
-import { DeleteCartAll } from '../../reducer/removeCart';
-import { FindUser } from '../../reducer/findUser';
+import HeaderCustom from '../../components/HeaderCustom'
+import { AddBill } from '../../reducers/addBill';
+import { DeleteCartAll } from '../../reducers/removeCart';
+import { FindUser } from '../../reducers/findUser';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Payment = (props) => {

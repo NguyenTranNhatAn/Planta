@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetDetail } from '../../reducer/detailSlice';
-import { GetDetailCategory } from '../../reducer/categorySlice';
-import { GetParent } from '../../reducer/cateParentSlice';
-import { AddCart } from '../../reducer/cartAdd';
-import { GetCart } from '../../reducer/cartSlice';
+import { GetDetail } from '../../reducers/detailSlice';
+import { GetDetailCategory } from '../../reducers/categorySlice';
+import { GetParent } from '../../reducers/cateParentSlice';
+import { AddCart } from '../../reducers/cartAdd';
+import { GetCart } from '../../reducers/cartSlice';
 const DetailAsm = (props) => {
   const dispatch = useDispatch();
   const { detailData, detailStatus } = useSelector((state) => state.detail);
@@ -89,7 +89,7 @@ const DetailAsm = (props) => {
       }
     }
   }, [cartData, detailData, cartStatus, detailStatus]);
-  
+
   return (
     <View style={styles.container}>
 

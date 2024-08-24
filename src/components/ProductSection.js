@@ -2,17 +2,17 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllCategory } from '../reducer/categoryGetallSlice';
+import { GetAllCategory } from '../reducers/categoryGetallSlice';
 
 
 
-const ProductSection = ({ idCate,title, data, more, navigation }) => {
+const ProductSection = ({ idCate, title, data, more, navigation }) => {
 
     const detail = (id) => {
         navigation.navigate('Detail', { id: id });
     }
     const seeMore = () => {
-        navigation.navigate('More',{idCate:idCate});
+        navigation.navigate('More', { idCate: idCate });
 
     }
 

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { LaySanPham } from '../../reducer/ProductSlice'
-import { GetAllCategory } from '../../reducer/categoryGetallSlice'
-import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
-import ProductSection from '../../Compoment/ProductSection'
+import { LaySanPham } from '../../reducers/ProductSlice'
+import { GetAllCategory } from '../../reducers/categoryGetallSlice'
+import { DangNhapTaiKhoan } from '../../reducers/loginSlice';
+import ProductSection from '../../components/ProductSection'
 
 
 const HomeAsm = (props) => {

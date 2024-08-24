@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
-import ProductSection from '../../Compoment/ProductSection';
-import HeaderCustom from '../../Compoment/HeaderCustom';
+import ProductSection from '../../components/ProductSection';
+import HeaderCustom from '../../components/HeaderCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllCategory } from '../../reducer/categoryGetallSlice';
-import { GetProByTypeCategory } from '../../reducer/productByType';
+import { GetAllCategory } from '../../reducers/categoryGetallSlice';
+import { GetProByTypeCategory } from '../../reducers/productByType';
 import { useFocusEffect } from '@react-navigation/native';
 const Regular = (props) => {
     const dispatch = useDispatch();
@@ -22,21 +22,21 @@ const Regular = (props) => {
         console.log(item._id)
         setid(item._id);
     }
-   
+
     useEffect(() => {
-       
+
         dispatch(GetProByTypeCategory(id))
-        
-    }, [dispatch,id]);
+
+    }, [dispatch, id]);
     useEffect(() => {
         setid(idCate)
-        cateAllData.map((item,index)=>{
-            if(item._id ===idCate){
+        cateAllData.map((item, index) => {
+            if (item._id === idCate) {
                 setselectItem(index)
             }
         })
-       
-      
+
+
     }, []);
     const renderItem = ({ item, index }) => {
         return (

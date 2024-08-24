@@ -6,8 +6,8 @@ import {
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
-import { DangKyTaiKhoan } from '../../reducer/registerSlice';
-import TextInputCom from '../../Compoment/TextInputCom';
+import { DangKyTaiKhoan } from '../../reducers/registerSlice';
+import TextInputCom from '../../components/TextInputCom';
 const RegisterAsm = (props) => {
   const { navigation } = props;
   const dispatch = useDispatch();
@@ -48,17 +48,17 @@ const RegisterAsm = (props) => {
   const validate = () => {
     var check = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex1= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
+    const passwordRegex1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
     const passwordRegex2 = /^[\w@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]*$/;
     if (name == "") {
       setnameErr('Họ tên không được để trống');
       check = false;
     }
-    if (email=='') {
+    if (email == '') {
       setemailErr('Email không được để trống')
       check = false;
     }
-    else if(!emailRegex.test(email)){
+    else if (!emailRegex.test(email)) {
       setemailErr('Email không đúng định dạng')
       check = false;
     }
@@ -67,11 +67,11 @@ const RegisterAsm = (props) => {
       setsdtErr('Số điện thoại không được để trống')
       check = false
     }
-    else if(phone.length !==10){
+    else if (phone.length !== 10) {
       setsdtErr('Số điện thoại phải đủ 10 số')
       check = false;
     }
-    
+
 
     if (password == "") {
       setPasswordErr('Mật khẩu không được để trống')
@@ -85,16 +85,16 @@ const RegisterAsm = (props) => {
       setPasswordErr('Mật khẩu không được chứa kí tự đặc biệt')
       check = false
     }
-    else if (password.length<8) {
+    else if (password.length < 8) {
       setPasswordErr('Mật khẩu phải có ít nhất 8 kí tự')
       check = false
     }
 
 
-   return check
+    return check
   }
   const addData = () => {
-  
+
     if (validate() === true) {
       dispatch(DangKyTaiKhoan({ name, email, phone, password }));
       setok(true)
@@ -123,7 +123,7 @@ const RegisterAsm = (props) => {
               setTextErr={setnameErr}
             />
             <TextInputCom
-              placeholder={'E-mail'} 
+              placeholder={'E-mail'}
               setText={setEmail}
               textErr={emailErr}
               setTextErr={setemailErr}

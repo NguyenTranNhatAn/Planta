@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 
 
 const Profile = (props) => {

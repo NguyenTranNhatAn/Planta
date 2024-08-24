@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 
 const DetailHistory = (props) => {
     const { navigation } = props

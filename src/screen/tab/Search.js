@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, StatusBar, TextInput, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Header } from 'react-native/Libraries/NewAppScreen'
-import HeaderCustom from '../../Compoment/HeaderCustom';
+import HeaderCustom from '../../components/HeaderCustom';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetByName } from '../../reducer/searchProduct';
+import { GetByName } from '../../reducers/searchProduct';
 
 const Search = (props) => {
   const { navigation } = props

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { UpdateUser } from '../../reducer/updateUserSlice';
-import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
-import { FindUser } from '../../reducer/findUser';
+import { UpdateUser } from '../../reducers/updateUserSlice';
+import { DangNhapTaiKhoan } from '../../reducers/loginSlice';
+import { FindUser } from '../../reducers/findUser';
 const AdjPersonal = (props) => {
     const dispatch = useDispatch();
     const { loginData } = useSelector((state) => state.login)

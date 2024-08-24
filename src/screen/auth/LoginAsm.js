@@ -5,7 +5,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
-import { DangNhapTaiKhoan } from '../../reducer/loginSlice';
+import { DangNhapTaiKhoan } from '../../reducers/loginSlice';
 const LoginAsm = (props) => {
   const { navigation } = props;
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const LoginAsm = (props) => {
   }
   const addData = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex1= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
+    const passwordRegex1 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]/
     const passwordRegex2 = /^[\w@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]*$/;
     var check = true
     if (email == "") {

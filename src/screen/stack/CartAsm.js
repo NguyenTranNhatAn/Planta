@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, StatusBar, FlatList, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { GetCart } from '../../reducer/cartSlice';
-import { MinusCart } from '../../reducer/minusCart';
-import { AddCart } from '../../reducer/cartAdd';
-import { DeleteCart } from '../../reducer/deleteCart';
-import { AddBill } from '../../reducer/addBill';
-import { DeleteCartAll } from '../../reducer/removeCart';
+import { GetCart } from '../../reducers/cartSlice';
+import { MinusCart } from '../../reducers/minusCart';
+import { AddCart } from '../../reducers/cartAdd';
+import { DeleteCart } from '../../reducers/deleteCart';
+import { AddBill } from '../../reducers/addBill';
+import { DeleteCartAll } from '../../reducers/removeCart';
 const CartAsm = (props) => {
     const dispatch = useDispatch();
     const { addcartData, addcartStatus } = useSelector((state) => state.addCart);

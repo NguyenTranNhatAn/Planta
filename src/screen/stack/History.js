@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ScrollView} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HeaderCustom from '../../Compoment/HeaderCustom'
+import HeaderCustom from '../../components/HeaderCustom'
 import { useDispatch, useSelector } from 'react-redux';
-import { ListBill } from '../../reducer/billListSlice';
+import { ListBill } from '../../reducers/billListSlice';
 const History = (props) => {
     const dispatch = useDispatch();
     const { listBillData, listBillStatus } = useSelector((state) => state.listBill);
@@ -80,10 +80,10 @@ const History = (props) => {
                     data={listBillData}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
-                    
+
                     keyExtractor={item => item._id}
                 />
-               
+
             </View>
         </View>
     )
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     body: {
         marginHorizontal: 48,
-        flex:1
+        flex: 1
     },
     txtDeMain: {
         color: 'black',
